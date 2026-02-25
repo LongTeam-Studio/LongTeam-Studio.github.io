@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Long Team Studio · Sandbox Game</title>
+    <style>
+        /* 全局样式，类似Python.org的干净现代风格 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background-color: #f7f9fc;
+        }
+
+        a {
+            text-decoration: none;
+            color: #2b6cb0; /* Python.org标志性蓝色 */
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: #1a4d7a;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2b6cb0;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #48bb78; /* 绿色点缀，类似Python的黄绿，这里用绿色代表游戏活力 */
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            color: #4a5568;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover {
+            color: #2b6cb0;
+        }
+
+        /* 主视觉 Hero 区域 */
+        .hero {
+            background: linear-gradient(145deg, #ebf4ff 0%, #ffffff 100%);
+            padding: 4rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .hero .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .hero-text {
+            flex: 1 1 400px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #1a202c;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text .highlight {
+            color: #2b6cb0;
+            border-bottom: 3px solid #48bb78;
+            display: inline-block;
+            padding-bottom: 0.2rem;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: #4a5568;
+            margin: 1.5rem 0 2rem;
+            max-width: 600px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: #2b6cb0;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+            padding: 1rem 2.5rem;
+            border-radius: 40px;
+            box-shadow: 0 8px 16px rgba(43, 108, 176, 0.2);
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .download-btn:hover {
+            background: #1a4d7a;
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .hero-image {
+            flex: 1 1 300px;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            width: 350px;
+            border-radius: 16px;
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
+        }
+
+        /* 游戏特色区域 (类似Python.org的“应用”区块) */
+        .features {
+            padding: 4rem 0;
+            background: #fff;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 3rem;
+        }
+
+        .section-title span {
+            color: #2b6cb0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: #f7f9fc;
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            transition: box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .feature-card p {
+            color: #718096;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .learn-more {
+            font-weight: 600;
+            color: #2b6cb0;
+        }
+
+        /* 下载区块 (强调) */
+        .download-area {
+            background: #2b6cb0;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .download-area .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .download-area h2 {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .download-area p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            opacity: 0.9;
+        }
+
+        .big-download-btn {
+            background: white;
+            color: #2b6cb0;
+            padding: 1rem 3rem;
+            border-radius: 40px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: background 0.2s, transform 0.1s;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .big-download-btn:hover {
+            background: #f0f4fa;
+            color: #1a4d7a;
+            transform: scale(1.02);
+        }
+
+        /* 页脚 */
+        .footer {
+            background: #1a202c;
+            color: #cbd5e0;
+            padding: 2rem 0;
+            font-size: 0.95rem;
+        }
+
+        .footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer a {
+            color: #90cdf4;
+        }
+
+        .footer a:hover {
+            color: white;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            .hero .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .footer .container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">Long<span>Studio</span></div>
+            <div class="nav-links">
+                <a href="#">主页</a>
+                <a href="#">游戏</a>
+                <a href="#">团队</a>
+                <a href="#">下载</a>
+                <a href="#">联系</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉 Hero (类似Python.org的大标题) -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-text">
+                <h1>
+                    创造你的<span class="highlight">沙盒世界</span>
+                </h1>
+                <p>
+                    《Sandbox》是一款由 Long Studio 打造的开放世界沙盒游戏。在这里，你可以自由建造、探索、改造，与朋友一起体验无限可能。
+                </p>
+                <!-- 主下载按钮，直接指向提供的GitHub页面 -->
+                <a href="https://github.com/longteamstudio/sandbox/sandbox_game-latest" class="download-btn" target="_blank" rel="noopener">立即下载 · 最新版</a>
+                <p style="margin-top: 1rem; font-size: 1rem; color: #718096;">
+                    Windows / macOS / Linux  ·  前往GitHub获取
+                </p>
+            </div>
+            <div class="hero-image">
+                <!-- 这里可以放一张游戏截图占位符，或者用纯色块代替。建议你替换成自己的截图 -->
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='350' viewBox='0 0 350 350'%3E%3Crect width='350' height='350' fill='%2348bb78'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='%23ffffff' text-anchor='middle' dy='.3em' font-family='Arial'%3E游戏截图占位%3C/text%3E%3C/svg%3E"
+                     alt="Sandbox Game 预览">
+            </div>
+        </div>
+    </section>
+
+    <!-- 特色区域 (类似Python.org的“应用”区块) -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title"><span>无限创意</span> · 由你定义</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏗️</div>
+                    <h3>自由建造</h3>
+                    <p>数百种方块和工具，让你随心所欲建造理想中的建筑、机关和城市。</p>
+                    <a href="#" class="learn-more">了解更多 →</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>广袤世界</h3>
+                    <p>程序生成的无限地图，包含多种生物群系、地下洞穴和神秘遗迹。</p>
+                    <a href="#" class="learn-more">了解更多 →</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>多人在线</h3>
+                    <p>邀请好友一起游玩，合作建造或PVP竞技，社区模组支持无限扩展。</p>
+                    <a href="#" class="learn-more">了解更多 →</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>模组支持</h3>
+                    <p>开放的Python脚本接口和创意工坊，轻松安装社区创作的新玩法。</p>
+                    <a href="#" class="learn-more">了解更多 →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 强调下载区域 (第二个下载按钮) -->
+    <section class="download-area">
+        <div class="container">
+            <h2>准备好进入沙盒世界了吗？</h2>
+            <p>下载最新版本，立刻开始创造。完全免费，无需注册。</p>
+            <a href="https://github.com/longteamstudio/sandbox/sandbox_game-latest" class="big-download-btn" target="_blank" rel="noopener">⬇️ 下载 Sandbox 最新版</a>
+            <p style="font-size: 1rem; margin-top: 0.5rem;">版本: v1.10.x (持续更新)  |  文件大小: ~50MB；仅限.exe文件~</p>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="copyright">
+                &copy; ©2023-2026 Long Team Studio. 保留所有权利。如有盗版，必将追究责任！
+            </div>
+            <div class="footer-links">
+                <a href="#">隐私政策</a>
+                <a href="#">服务条款</a>
+                <a href="https://github.com/longteamstudio" target="_blank" rel="noopener">GitHub</a>
+                <a href="#">联系我们</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
