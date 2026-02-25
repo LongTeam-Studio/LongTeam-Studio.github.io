@@ -21,7 +21,7 @@
 
         a {
             text-decoration: none;
-            color: #2b6cb0; /* Python.org标志性蓝色 */
+            color: #2b6cb0;
             transition: color 0.2s ease;
         }
 
@@ -60,7 +60,7 @@
         }
 
         .logo span {
-            color: #48bb78; /* 绿色点缀，类似Python的黄绿，这里用绿色代表游戏活力 */
+            color: #48bb78;
             font-weight: 400;
         }
 
@@ -150,7 +150,7 @@
             box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
         }
 
-        /* 游戏特色区域 (类似Python.org的“应用”区块) */
+        /* 游戏特色区域 */
         .features {
             padding: 4rem 0;
             background: #fff;
@@ -207,7 +207,64 @@
             color: #2b6cb0;
         }
 
-        /* 下载区块 (强调) */
+        /* 最新版本信息区域（新增） */
+        .latest-update {
+            background: #edf2f7;
+            padding: 4rem 0;
+        }
+
+        .update-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+        }
+
+        .update-card h3 {
+            font-size: 1.8rem;
+            color: #2b6cb0;
+            margin-bottom: 0.5rem;
+        }
+
+        .update-card .subtitle {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem 1.5rem;
+            margin: 1.5rem 0;
+            padding-left: 1.2rem;
+        }
+
+        .feature-list li {
+            list-style-type: disc;
+            color: #2d3748;
+        }
+
+        .update-footer {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .update-footer p {
+            font-size: 1.1rem;
+        }
+
+        .update-footer strong {
+            color: #2b6cb0;
+        }
+
+        /* 下载区块 */
         .download-area {
             background: #2b6cb0;
             color: white;
@@ -281,6 +338,10 @@
             gap: 2rem;
         }
 
+        .copyright {
+            line-height: 1.8;
+        }
+
         /* 响应式微调 */
         @media (max-width: 768px) {
             .navbar .container {
@@ -302,6 +363,14 @@
             .hero-text p {
                 margin-left: auto;
                 margin-right: auto;
+            }
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+            .update-footer {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: flex-start;
             }
             .footer .container {
                 flex-direction: column;
@@ -325,7 +394,7 @@
         </div>
     </nav>
 
-    <!-- 主视觉 Hero (类似Python.org的大标题) -->
+    <!-- 主视觉 Hero -->
     <section class="hero">
         <div class="container">
             <div class="hero-text">
@@ -335,21 +404,20 @@
                 <p>
                     《Sandbox》是一款由 Long Studio 打造的开放世界沙盒游戏。在这里，你可以自由建造、探索、改造，与朋友一起体验无限可能。
                 </p>
-                <!-- 主下载按钮，直接指向提供的GitHub页面 -->
-                <a href="https://github.com/longteamstudio/sandbox/sandbox_game-latest" class="download-btn" target="_blank" rel="noopener">立即下载 · 最新版</a>
+                <!-- 下载链接已更新 -->
+                <a href="https://github.com/LongTeam-Studio/LongTeam-Studio.github.io" class="download-btn" target="_blank" rel="noopener">立即下载 · 最新版</a>
                 <p style="margin-top: 1rem; font-size: 1rem; color: #718096;">
-                    Windows / macOS / Linux  ·  前往GitHub获取
+                    Windows / macOS / Linux  ·  前往GitHub仓库获取
                 </p>
             </div>
             <div class="hero-image">
-                <!-- 这里可以放一张游戏截图占位符，或者用纯色块代替。建议你替换成自己的截图 -->
                 <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='350' viewBox='0 0 350 350'%3E%3Crect width='350' height='350' fill='%2348bb78'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='%23ffffff' text-anchor='middle' dy='.3em' font-family='Arial'%3E游戏截图占位%3C/text%3E%3C/svg%3E"
                      alt="Sandbox Game 预览">
             </div>
         </div>
     </section>
 
-    <!-- 特色区域 (类似Python.org的“应用”区块) -->
+    <!-- 特色区域 -->
     <section class="features">
         <div class="container">
             <h2 class="section-title"><span>无限创意</span> · 由你定义</h2>
@@ -382,21 +450,48 @@
         </div>
     </section>
 
-    <!-- 强调下载区域 (第二个下载按钮) -->
+    <!-- 最新版本信息（新增） -->
+    <section class="latest-update">
+        <div class="container">
+            <h2 class="section-title"><span>最新版本</span> · 1.10.4-rd1-地形修复版</h2>
+            <div class="update-card">
+                <h3>沙盒游戏 1.10.4-rd1-地形修复版</h3>
+                <div class="subtitle">基于Python和Pygame开发</div>
+                <h4 style="font-size: 1.4rem; margin: 1.5rem 0 0.5rem;">特性：</h4>
+                <ul class="feature-list">
+                    <li>无限生成的世界</li>
+                    <li>柏林噪声地形生成</li>
+                    <li>完整的方块和物品系统</li>
+                    <li>昼夜循环和怪物AI</li>
+                    <li>完整的存档系统</li>
+                    <li>虚拟控制支持</li>
+                </ul>
+                <div class="update-footer">
+                    <p><strong>开发者:</strong> LongTeam Studio</p>
+                    <p><strong>QQ群:</strong> 131293550 (玩家交流)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 强调下载区域 -->
     <section class="download-area">
         <div class="container">
             <h2>准备好进入沙盒世界了吗？</h2>
             <p>下载最新版本，立刻开始创造。完全免费，无需注册。</p>
-            <a href="https://github.com/longteamstudio/sandbox/sandbox_game-latest" class="big-download-btn" target="_blank" rel="noopener">⬇️ 下载 Sandbox 最新版</a>
+            <!-- 下载链接已更新 -->
+            <a href="https://github.com/LongTeam-Studio/LongTeam-Studio.github.io" class="big-download-btn" target="_blank" rel="noopener">⬇️ 下载 Sandbox 最新版</a>
             <p style="font-size: 1rem; margin-top: 0.5rem;">版本: v1.10.x (持续更新)  |  文件大小: ~50MB；仅限.exe文件~</p>
         </div>
     </section>
 
-    <!-- 页脚 -->
+    <!-- 页脚（更新版权和QQ群） -->
     <footer class="footer">
         <div class="container">
             <div class="copyright">
-                &copy; ©2023-2026 Long Team Studio. 保留所有权利。如有盗版，必将追究责任！
+                &copy; 2023-2026 LongTeam Studio. com.longteam.studio<br>
+                Piracy will be held legally accountable.<br>
+                QQ Group: 131293550 (Player Communication Only)
             </div>
             <div class="footer-links">
                 <a href="#">隐私政策</a>
